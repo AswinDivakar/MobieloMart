@@ -48,7 +48,7 @@
 
 
                 <EditText
-                    android:id="@+id/signinEmail"
+                    android:id="@+id/et_signin_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/signupName"
@@ -62,10 +62,10 @@
                     android:padding="10dp" />
 
                 <EditText
-                    android:id="@+id/signinPassword"
+                    android:id="@+id/et_signin_pwd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/signinEmail"
+                    android:layout_below="@+id/et_signin_email"
                     android:maxLines="1"
 
                     android:layout_centerHorizontal="true"
@@ -77,6 +77,7 @@
                     android:padding="10dp" />
 
                 <TextView
+                    android:id="@+id/tv_fgtpwd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -97,7 +98,7 @@
                         android:weightSum="2">
 
                         <Button
-                            android:id="@+id/signupButton"
+                            android:id="@+id/btn_sigup"
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:layout_gravity="center_horizontal"
@@ -114,7 +115,7 @@
                             android:textColor="@android:color/black" />
 
                         <Button
-                            android:id="@+id/signinButton"
+                            android:id="@+id/btn_signin"
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:layout_gravity="center_horizontal"
@@ -133,7 +134,7 @@
                     </LinearLayout>
 
                     <Button
-                        android:id="@+id/signinGoogle"
+                        android:id="@+id/btn_signin_google"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_gravity="center_horizontal"
@@ -145,7 +146,6 @@
                         android:text="Sign in with Google"
                         android:textAllCaps="false"
                         android:textColor="@android:color/white" />
-
                 </LinearLayout>
 
             </LinearLayout>

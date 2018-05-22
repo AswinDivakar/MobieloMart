@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SignInActivity" android:theme="@style/AppTheme.NoActionBar" android:windowSoftInputMode="adjustPan|stateVisible"></activity>
+        <activity android:name=".SampleHome"/>
     </application>
 
 </manifest>
