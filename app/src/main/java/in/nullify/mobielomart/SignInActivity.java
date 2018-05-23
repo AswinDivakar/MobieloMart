@@ -1,9 +1,12 @@
 package in.nullify.mobielomart;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -48,11 +51,15 @@ public class SignInActivity extends AppCompatActivity implements
     private String name;
     private ArrayAdapter adapter;
     private GoogleSignInClient mGoogleSignInClient;
+    SharedPreferences sharedPref;
+    SharedPreferences.Editor editor;
+
 
     private GoogleApiClient mGoogleApiClient;
     private ProgressDialog mProgressDialog;
 
     private Button btnSignIn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,8 +131,12 @@ public class SignInActivity extends AppCompatActivity implements
                     + ", Image: " + personPhotoUrl);
 
             //new SignUp().execute(personName, email, "password", null, "Result");
-            Log.e("Hoi ",new PostMan().execute("https://www.nullify.in/mobielo_mart/php/signup" +
-                    ".php","name",personName,"email", email,"pass", "password", null, "Result").toString());
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(SignInActivity.this);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("CallerPM", "signinactivity");
+            editor.commit();
+            Log.e("Post : ",new PostMan(getApplicationContext()).execute("https://www.nullify.in/mobielo_mart/php/signup" +
+                    ".php","name",personName,"email", email,"pass", "password", getApplicationContext().toString(), "Result").toString());
 
             updateUI(true);
         } else {

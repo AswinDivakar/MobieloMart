@@ -14,10 +14,21 @@
         android:src="@drawable/signin_appbar"
         /> -->
 
+    <TextView
+        android:id="@+id/tv_skip"
+        android:layout_width="match_parent"
+        android:gravity="end"
+        android:padding="5dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="3dp"
+        android:textSize="18sp"
+        android:layout_height="wrap_content"
+        android:text="Skip>>" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="125dp"
         android:background="@drawable/signin_bg_white"
         android:gravity="center"
         android:paddingTop="80dp">

@@ -1,6 +1,9 @@
 package in.nullify.mobielomart;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import org.json.JSONObject;
@@ -28,6 +31,13 @@ import javax.net.ssl.HttpsURLConnection;
  * Created by Aswin on 22-05-2018.
  */
 public class PostMan extends AsyncTask<String, Void, String> {
+    SharedPreferences sharedPref;
+    private String CallerPM;
+    Context context;
+    protected PostMan(Context context){
+        this.context= context;
+
+    }
 
     protected void onPreExecute() {
 
@@ -92,8 +102,12 @@ public class PostMan extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        SignInActivity signInActivity=new SignInActivity();
-        signInActivity.SignUpResult(result);
+        final SharedPreferences mShared = PreferenceManager.getDefaultSharedPreferences(this.context);
+        CallerPM = (mShared.getString("CallerPM", "Nothing Selected"));
+        if(CallerPM.equals("signinactiity")) {
+            SignInActivity signInActivity=new SignInActivity();
+            signInActivity.SignUpResult(result);
+        }
     }
 
     public String getPostDataString(JSONObject params) throws Exception {

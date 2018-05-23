@@ -3,6 +3,8 @@ package in.nullify.mobielomart;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -10,7 +12,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent intent=new Intent(this.getApplicationContext(),SignInActivity.class);
-        startActivity(intent);
+
+        TextView tv_signin=(TextView)findViewById(R.id.tv_signin);
+        TextView tv_account=(TextView)findViewById(R.id.tv_account);
+
+        tv_signin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,SignInActivity.class);
+                startActivity(intent);
+            }
+        });
+        tv_account.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,AccountActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }
