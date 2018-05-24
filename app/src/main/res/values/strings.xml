@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">Mobielo Mart</string>
+    <string name="search">search</string>
+    <string name="searchHint">search for product brands and more</string>
+    <string name="item_1">Categories</string>
+    <string name="item_2">Home</string>
+    <string name="item_3">Account</string>
+    <string name="best_offers">new offers</string>
+    <string name="new_arrivals">NEW ARRIVALS</string>
 
     <string-array name="account_list_array">
         <item>My Orders</item>

@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
         TextView tv_signin=(TextView)findViewById(R.id.tv_signin);
         TextView tv_account=(TextView)findViewById(R.id.tv_account);
+        TextView tv_product=(TextView)findViewById(R.id.tv_product);
 
         tv_signin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -27,6 +28,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(MainActivity.this,AccountActivity.class);
+                startActivity(intent);
+            }
+        });
+        tv_product.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,ProductActivity.class);
                 startActivity(intent);
             }
         });

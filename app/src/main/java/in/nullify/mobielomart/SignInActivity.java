@@ -205,7 +205,7 @@ public class SignInActivity extends AppCompatActivity implements
     private void updateUI(Object o) {
         hideProgressDialog();
         if(o.equals(true)){
-            Intent intent=new Intent(this.getApplicationContext(),SampleHome.class);
+            Intent intent=new Intent(this.getApplicationContext(),MainActivity.class);
             startActivity(intent);
         }
     }

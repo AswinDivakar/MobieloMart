@@ -20,6 +20,7 @@
         <activity android:name=".SignInActivity" android:theme="@style/AppTheme.NoActionBar" android:windowSoftInputMode="adjustPan|stateVisible"></activity>
         <activity android:name=".SampleHome"/>
         <activity android:name=".AccountActivity" />
+        <activity android:name=".ProductActivity"/>
     </application>
 
 </manifest>

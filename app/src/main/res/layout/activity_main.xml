@@ -13,13 +13,20 @@
         android:layout_height="wrap_content"
         android:id="@+id/tv_signin"
         android:text="Signin"
-        android:textSize="20sp" />
+        android:textSize="30sp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_account"
         android:text="Account"
-        android:textSize="20sp"
+        android:textSize="30sp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_product"
+        android:text="Product"
+        android:textSize="30sp"
         />
 
 </LinearLayout>
