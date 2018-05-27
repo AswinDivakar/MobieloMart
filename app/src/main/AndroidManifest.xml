@@ -21,6 +21,12 @@
         <activity android:name=".SampleHome"/>
         <activity android:name=".AccountActivity" />
         <activity android:name=".ProductActivity"/>
+        <activity android:name=".AddressActivity"/>
+        <activity android:name=".EditAccountActivity"/>
+        <activity android:name=".LogoutActivity"/>
+        <activity android:name=".OrdersActivity"/>
+        <activity android:name=".TrackActivity"/>
+        <activity android:name=".WishlistActivity"/>
     </application>
 
 </manifest>

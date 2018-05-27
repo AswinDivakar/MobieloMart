@@ -11,7 +11,9 @@
     <string-array name="account_list_array">
         <item>My Orders</item>
         <item>My Wishlist</item>
-        <item>Settings</item>
+        <item>Track Order</item>
+        <item>Edit Account</item>
         <item>Address Book</item>
+        <item>Logout</item>
     </string-array>
 </resources>

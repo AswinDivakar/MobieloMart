@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
@@ -75,7 +76,6 @@ public class SignInActivity extends AppCompatActivity implements
                 .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
-
         // Customizing G+ button
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,10 +84,10 @@ public class SignInActivity extends AppCompatActivity implements
             }
         });
 
-
         final EditText SignupEmail = (EditText) findViewById(R.id.et_signin_email);
         final EditText SignupPassword = (EditText) findViewById(R.id.et_signin_pwd);
         Button SignupButton = (Button) findViewById(R.id.btn_signin);
+        TextView tv_skip=(TextView)findViewById(R.id.tv_skip);
 
         SignupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,6 +100,14 @@ public class SignInActivity extends AppCompatActivity implements
                 }
             }
         });
+        tv_skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(SignInActivity.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
@@ -136,7 +144,7 @@ public class SignInActivity extends AppCompatActivity implements
             editor.putString("CallerPM", "signinactivity");
             editor.commit();
             Log.e("Post : ",new PostMan(getApplicationContext()).execute("https://www.nullify.in/mobielo_mart/php/signup" +
-                    ".php","name",personName,"email", email,"pass", "password", getApplicationContext().toString(), "Result").toString());
+                    ".php","name",personName,"email", email,"pass", "password").toString());
 
             updateUI(true);
         } else {
@@ -205,6 +213,10 @@ public class SignInActivity extends AppCompatActivity implements
     private void updateUI(Object o) {
         hideProgressDialog();
         if(o.equals(true)){
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(SignInActivity.this);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("SIGNEDIN", "YES");
+            editor.commit();
             Intent intent=new Intent(this.getApplicationContext(),MainActivity.class);
             startActivity(intent);
         }

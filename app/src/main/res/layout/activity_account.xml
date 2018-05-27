@@ -10,7 +10,6 @@
         android:layout_alignParentTop="true"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary">
-
         <android.support.v7.widget.Toolbar
             android:id="@+id/product_toolbar"
             android:layout_width="match_parent"
@@ -18,11 +17,9 @@
             app:contentInsetEnd="0dp"
             app:contentInsetStart="0dp"
             app:layout_scrollFlags="scroll|enterAlways">
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
                 <ImageButton
                     android:id="@+id/product_cart_button"
                     android:layout_width="30dp"
@@ -36,56 +33,43 @@
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_below="@+id/product_appbar"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ll_signin"
+            android:background="#F1F1F1"
+            android:padding="30dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_marginLeft="5dp"
+                android:textSize="15sp"
+                android:text="Hi there!"
+                />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_acc_signinup"
+                android:text="sign up/sign in"
+                android:textAllCaps="false"
+                android:paddingLeft="15dp"
+                android:textSize="15sp"
+                android:paddingRight="15dp"
+                />
+        </LinearLayout>
     <ListView
         android:layout_width="match_parent"
         android:id="@+id/lv_account"
-        android:layout_below="@+id/product_appbar"
-
+        android:layout_below="@+id/ll_signin"
         android:layout_height="wrap_content"
         android:entries="@array/account_list_array"
         android:padding="10dp">
-
     </ListView>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lv_account"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
-        android:weightSum="2">
-
-        <Button
-            android:id="@+id/btn_signin"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/button_signup_bg_account"
-            android:paddingLeft="40dp"
-            android:paddingRight="40dp"
-            android:text="Sign up"
-            android:textAllCaps="false"
-            android:textColor="@android:color/black" />
-        <Button
-            android:id="@+id/btn_sigup"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/button_signup_bg"
-            android:paddingLeft="40dp"
-            android:paddingRight="40dp"
-            android:text="Sign in"
-            android:textAllCaps="false"
-            android:textColor="@android:color/black" />
-
-    </LinearLayout>
+    </RelativeLayout>
 </RelativeLayout>

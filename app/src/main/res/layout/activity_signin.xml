@@ -4,16 +4,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/signin_long"
     android:orientation="vertical">
-    <!-- <ImageView
-        android:layout_width="match_parent"
-        android:id="@+id/nav_image"
-        android:layout_height="300dp"
-        android:layout_marginTop="-40dp"
-        android:scaleType="centerCrop"
-        android:fitsSystemWindows="true"
-        android:src="@drawable/signin_appbar"
-        /> -->
-
     <TextView
         android:id="@+id/tv_skip"
         android:layout_width="match_parent"
@@ -78,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/et_signin_email"
                     android:maxLines="1"
-
+                    android:focusedByDefault="false"
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="7dp"
@@ -162,6 +152,4 @@
             </LinearLayout>
         </ScrollView>
     </RelativeLayout>
-
-
 </LinearLayout>

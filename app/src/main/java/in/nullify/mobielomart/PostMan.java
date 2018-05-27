@@ -51,7 +51,7 @@ public class PostMan extends AsyncTask<String, Void, String> {
             int i;
 
             JSONObject postDataParams = new JSONObject();
-            for (i=1;i<arg0.length-2;i=i+2)
+            for (i=1;i<arg0.length;i=i+2)
                 postDataParams.put(arg0[i], arg0[i+1]);//post cheyyanda values ex: post..("email","a@.com")
             Log.e("params", postDataParams.toString());
 
