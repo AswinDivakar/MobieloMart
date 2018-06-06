@@ -1,12 +1,18 @@
 package in.nullify.mobielomart;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -38,36 +44,25 @@ public class AddressActivity extends AppCompatActivity {
     private ListView lv_address;
     private LinearLayout ll_progress;
     private TextView tv_addr_delete;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address);
-        lv_address= findViewById(R.id.lv_address);
-        adapter=new AddressAdapter(AddressActivity.this,names,addresses);
-        lv_address.setAdapter(adapter);adapter=new AddressAdapter(AddressActivity.this,names,addresses);
-        Button btn=(Button)findViewById(R.id.btn_address_add);
-        ll_progress=findViewById(R.id.ll_progress);
-        TextView tv_addr_edit=(TextView)findViewById(R.id.tv_addr_edit);
+        lv_address = findViewById(R.id.lv_address);
+        adapter = new AddressAdapter(AddressActivity.this, aid, names, addresses);
+        lv_address.setAdapter(adapter);
+        adapter = new AddressAdapter(AddressActivity.this, aid, names, addresses);
+        Button btn = (Button) findViewById(R.id.btn_address_add);
+        ll_progress = findViewById(R.id.ll_progress);
+        TextView tv_addr_edit = (TextView) findViewById(R.id.tv_addr_edit);
 
-
-        new GetAddress(getApplicationContext()).execute("user_id","1");
-
-        lv_address.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-
-            }
-        });
+        new GetAddress().execute("user_id", "1");
 
     }
 
 
     public class GetAddress extends AsyncTask<String, Void, String> {
-        Context context;
-        GetAddress(Context context){
-            this.context=context;
-
-        }
 
         protected void onPreExecute() {
             ll_progress.setVisibility(View.VISIBLE);
@@ -135,7 +130,6 @@ public class AddressActivity extends AppCompatActivity {
                 for (int i = 0; i < contacts.length(); i++) {
                     JSONObject c = contacts.getJSONObject(i);
                     aid.add(c.getString("aid"));
-                    Toast.makeText(getApplicationContext(),c.getString("aid"),Toast.LENGTH_LONG).show();
                     names.add(c.getString("name"));
                     addresses.add(c.getString("address"));
 
@@ -172,7 +166,55 @@ public class AddressActivity extends AppCompatActivity {
             result.append(URLEncoder.encode(value.toString(), "UTF-8"));
 
         }
-        Log.e("Tag",result.toString());
+        Log.e("Tag", result.toString());
         return result.toString();
+    }
+
+    public class AddressAdapter extends ArrayAdapter<String> {
+        private Activity context;
+        private ArrayList<String> names;
+        private ArrayList<String> addresses;
+        private ArrayList<String> aid;
+
+        public AddressAdapter(Activity context, ArrayList<String> aid, ArrayList<String> names, ArrayList<String> addresses) {
+            super(context, R.layout.address_list, addresses);
+            this.context = context;
+            this.names = names;
+            this.addresses = addresses;
+            this.aid = aid;
+
+        }
+
+        @Override
+        public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            LayoutInflater inflater = context.getLayoutInflater();
+            final View rowView = inflater.inflate(R.layout.address_list, null, true);
+            TextView name = (TextView) rowView.findViewById(R.id.tv_addr_name);
+            TextView address = (TextView) rowView.findViewById(R.id.tv_addr_address);
+            TextView tv_addr_edit = (TextView) rowView.findViewById(R.id.tv_addr_edit);
+            TextView tv_addr_delete = (TextView) rowView.findViewById(R.id.tv_addr_delete);
+            tv_addr_delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //int position=(Integer)v.getTag();
+                    new PostMan(getContext()).execute("https://www.nullify.in/mobielo_mart/php/Address/deleteAddress.php", "aid", aid.get(position));
+                    names.remove(position);
+                    addresses.remove(position);
+                    aid.remove(position);
+                    adapter.notifyDataSetChanged();
+                    Toast.makeText(getContext(), "Deleted" + position, Toast.LENGTH_SHORT).show();
+                }
+            });
+            tv_addr_edit.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getContext(), "Edit Activity", Toast.LENGTH_SHORT).show();
+                }
+            });
+            name.setText(names.get(position));
+            address.setText(addresses.get(position));
+            return rowView;
+        }
     }
 }

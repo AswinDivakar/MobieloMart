@@ -1,9 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center">
-    <TextView
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/ll_wishlist_progress"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content">
+    <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Wishlish"/>
+        android:id="@+id/wishlist_progressbar" />
+    </LinearLayout>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lv_wishlist"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/ll_wishlist_progress"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/btn_wishlist_clearall"
+        >
+    </ListView>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_wishlist_clearall"
+        android:background="@drawable/button_addr_add_addr"
+        android:text="Clear All"
+        android:textColor="#5fdd93"
+        android:textSize="15sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_alignParentBottom="true"
+        />
 
 </RelativeLayout>
