@@ -17,7 +17,7 @@
                android:layout_height="wrap_content"
                android:id="@+id/tv_addr_name"
                android:text="Name"
-               android:textSize="17sp"
+               android:textSize="19sp"
                android:layout_marginTop="10dp"
                android:layout_marginLeft="10dp"
                android:textStyle="bold"/>
@@ -25,9 +25,37 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:id="@+id/tv_addr_address"
+               android:textSize="15dp"
                android:layout_below="@+id/tv_addr_name"
                android:text="Address"
                android:layout_margin="10dp" />
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:id="@+id/tv_addr_edit"
+               android:layout_below="@+id/tv_addr_address"
+               android:text="EDIT"
+               android:textStyle="bold"
+               android:textColor="#fa8405"
+               android:textSize="15dp"
+               android:layout_marginTop="5dp"
+               android:layout_marginLeft="10dp"
+               android:layout_marginRight="10dp"
+               android:layout_marginBottom="15dp"/>
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:id="@+id/tv_addr_delete"
+               android:layout_below="@+id/tv_addr_address"
+               android:layout_toRightOf="@+id/tv_addr_edit"
+               android:text="DELETE"
+               android:textStyle="bold"
+               android:textSize="15dp"
+               android:textColor="#fa8405"
+               android:layout_marginTop="5dp"
+               android:layout_marginLeft="10dp"
+               android:layout_marginBottom="15dp"
+               />
 
        </RelativeLayout>
 

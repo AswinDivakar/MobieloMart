@@ -2,9 +2,13 @@ package in.nullify.mobielomart;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,26 +31,33 @@ import java.util.Iterator;
 import javax.net.ssl.HttpsURLConnection;
 
 public class AddressActivity extends AppCompatActivity {
-    private String[] names = new String[]{"Hi","Hello"};
-    private String[] addresses = new String[]{"Hi","Hello"};
-    private TextView name, address;
+    private ArrayList<String> names = new ArrayList<>();
+    private ArrayList<String> addresses = new ArrayList<>();
+    private ArrayList<String> aid = new ArrayList<>();
     private AddressAdapter adapter;
     private ListView lv_address;
-
+    private LinearLayout ll_progress;
+    private TextView tv_addr_delete;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address);
-        TextView text = (TextView) findViewById(R.id.text);
-        lv_address=(ListView)findViewById(R.id.lv_address);
-
-
-        name = (TextView) findViewById(R.id.tv_addr_name);
-        address = (TextView) findViewById(R.id.tv_addr_address);
+        lv_address= findViewById(R.id.lv_address);
         adapter=new AddressAdapter(AddressActivity.this,names,addresses);
-        lv_address.setAdapter(adapter);
+        lv_address.setAdapter(adapter);adapter=new AddressAdapter(AddressActivity.this,names,addresses);
+        Button btn=(Button)findViewById(R.id.btn_address_add);
+        ll_progress=findViewById(R.id.ll_progress);
+        TextView tv_addr_edit=(TextView)findViewById(R.id.tv_addr_edit);
 
-        new GetAddress(getApplicationContext()).execute();
+
+        new GetAddress(getApplicationContext()).execute("user_id","1");
+
+        lv_address.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+
+            }
+        });
 
     }
 
@@ -55,19 +66,20 @@ public class AddressActivity extends AppCompatActivity {
         Context context;
         GetAddress(Context context){
             this.context=context;
+
         }
 
         protected void onPreExecute() {
-      
+            ll_progress.setVisibility(View.VISIBLE);
+
         }
 
         protected String doInBackground(String... arg0) {
-
             try {
-
                 URL url = new URL("http://www.nullify.in/mobielo_mart/php/Address/getAddress.php");
 
                 JSONObject postDataParams = new JSONObject();
+                postDataParams.put(arg0[0], arg0[1]);
                 Log.e("params", postDataParams.toString());
 
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -122,13 +134,16 @@ public class AddressActivity extends AppCompatActivity {
                 JSONArray contacts = jsonObj.getJSONArray("result");
                 for (int i = 0; i < contacts.length(); i++) {
                     JSONObject c = contacts.getJSONObject(i);
-                    names[i]=(c.getString("name"));
-                    Toast.makeText(getApplicationContext(),c.getString("name"),Toast.LENGTH_LONG).show();
-                    addresses[i]=(c.getString("address"));
-                }
+                    aid.add(c.getString("aid"));
+                    Toast.makeText(getApplicationContext(),c.getString("aid"),Toast.LENGTH_LONG).show();
+                    names.add(c.getString("name"));
+                    addresses.add(c.getString("address"));
 
+                }
                 lv_address.setAdapter(adapter);
-                //adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
+                ll_progress.setVisibility(View.GONE);
+
             } catch (final JSONException e) {
 
             }
@@ -157,6 +172,7 @@ public class AddressActivity extends AppCompatActivity {
             result.append(URLEncoder.encode(value.toString(), "UTF-8"));
 
         }
+        Log.e("Tag",result.toString());
         return result.toString();
     }
 }
